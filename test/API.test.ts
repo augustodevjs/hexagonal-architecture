@@ -14,6 +14,7 @@ test.skip("Deve executar o checkin de um carro", async function () {
 		method: "get"
 	});
 	const parkedCars = responseGetParkedCars.data;
+
 	expect(parkedCars).toHaveLength(1);
 	const responseCheckout = await axios({
 		url: "http://localhost:3000/checkout",
@@ -23,6 +24,7 @@ test.skip("Deve executar o checkin de um carro", async function () {
 			checkoutDate: "2022-03-01T12:00-03:00"
 		}
 	});
+
 	const ticket = responseCheckout.data;
 	expect(ticket.period).toBe(2);
 	expect(ticket.price).toBe(20);

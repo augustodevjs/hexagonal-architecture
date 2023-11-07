@@ -1,8 +1,7 @@
-import ParkedCar from "./ParkedCar";
-import ParkedCarRepository from "./ParkedCarRepository";
-import Connection from "./Connection";
+import { ParkedCar } from "../application";
+import { Connection, ParkedCarRepository } from "../contracts";
 
-export default class ParkedCarDatabaseRepository implements ParkedCarRepository {
+export class ParkedCarDatabaseRepository implements ParkedCarRepository {
 	constructor(readonly connection: Connection) {
 	}
 
@@ -30,5 +29,4 @@ export default class ParkedCarDatabaseRepository implements ParkedCarRepository 
 		const parkedCar = new ParkedCar(parkedCarData.plate, new Date(parkedCarData.checkin_date));
 		return parkedCar;
 	}
-
 }

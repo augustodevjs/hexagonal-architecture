@@ -1,10 +1,10 @@
-import Connection from "./Connection";
 import pgp from "pg-promise";
+import { Connection } from "../contracts";
 
-export default class PostgreSQLAdapter implements Connection {
+export class PostgreSQLAdapter implements Connection {
 	connection: any;
 
-	constructor () {
+	constructor() {
 		this.connection = pgp()("postgres://postgres:123456@localhost:5432/app");
 	}
 
@@ -19,5 +19,4 @@ export default class PostgreSQLAdapter implements Connection {
 	close(): Promise<void> {
 		return this.connection.$pool.end();
 	}
-	
 }

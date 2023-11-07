@@ -1,9 +1,8 @@
-import express, { Request, response, Response } from "express";
-import Checkin from "./Checkin";
-import Checkout from "./Checkout";
-import GetParkedCars from "./GetParkedCars";
-import ParkedCarDatabaseRepository from "./ParkedCarDatabaseRepository";
-import PostgreSQLAdapter from "./PostgreSQLAdapter";
+import express, { Request, Response } from "express";
+
+import { PostgreSQLAdapter } from "./adapters";
+import { ParkedCarDatabaseRepository } from "./repository";
+import { Checkin, Checkout, GetParkedCars } from "./application";
 
 const app = express();
 app.use(express.json());
@@ -12,7 +11,6 @@ const connection = new PostgreSQLAdapter();
 const parkedCarRepository = new ParkedCarDatabaseRepository(connection);
 
 // Routes
-
 app.post("/checkin", async function (request: Request, response: Response) {
 	const checkin = new Checkin(parkedCarRepository);
 	await checkin.execute({ plate: request.body.plate, checkinDate: request.body.checkinDate });

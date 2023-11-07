@@ -1,10 +1,10 @@
-import ParkedCar from "./ParkedCar";
-import ParkedCarRepository from "./ParkedCarRepository";
+import { ParkedCar } from "../application";
+import { ParkedCarRepository } from "../contracts";
 
-export default class ParkedCarMemoryRepository implements ParkedCarRepository {
+export class ParkedCarMemoryRepository implements ParkedCarRepository {
 	parkedCars: ParkedCar[];
 
-	constructor () {
+	constructor() {
 		this.parkedCars = [];
 	}
 
